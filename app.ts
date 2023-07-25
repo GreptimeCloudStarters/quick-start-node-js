@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 // For troubleshooting, set the log level to DiagLogLevel.DEBUG
 import { diag, DiagConsoleLogger, DiagLogLevel } from '@opentelemetry/api';
