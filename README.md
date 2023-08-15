@@ -20,7 +20,7 @@ npx ts-node app.ts --host=<host> --db=<dbname> --username=<username> --password=
 ## npm-publish
 1. Compile typescript to javascript.
 ```shell
-tsc app.ts
+tsc
 ```
 2. Change the version in package.json.
 3. Commit and push code

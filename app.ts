@@ -16,7 +16,6 @@ function main() {
     const password = argv.password
 
     const auth = Buffer.from(`${username}:${password}`).toString('base64')
-
     const metricReader = new PeriodicExportingMetricReader({
         exporter: new OTLPMetricExporter({
             url: `https://${dbHost}/v1/otlp/v1/metrics`,
@@ -26,7 +25,7 @@ function main() {
             },
             timeoutMillis: 5000,
         }),
-        exportIntervalMillis: 2000,
+        exportIntervalMillis: 5000,
     })
 
     const meterProvider = new MeterProvider();

@@ -23,7 +23,7 @@ function main() {
             },
             timeoutMillis: 5000,
         }),
-        exportIntervalMillis: 2000,
+        exportIntervalMillis: 5000,
     });
     const meterProvider = new sdk_metrics_1.MeterProvider();
     meterProvider.addMetricReader(metricReader);

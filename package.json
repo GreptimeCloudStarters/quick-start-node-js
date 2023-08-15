@@ -1,6 +1,6 @@
 {
   "name": "greptime-cloud-quick-start",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "bin": "app.js",
   "scripts": {
