@@ -9,14 +9,22 @@ const sdk_metrics_1 = require("@opentelemetry/sdk-metrics");
 const host_metrics_1 = require("@opentelemetry/host-metrics");
 function main() {
     var argv = require('minimist')(process.argv.slice(2));
-    const dbHost = argv.host;
-    const db = argv.db;
+    const dbHost = argv.host || 'localhost';
+    const db = argv.db || 'public';
     const username = argv.username;
     const password = argv.password;
+    var url = '';
+    if (dbHost == 'localhost' || dbHost == '127.0.0.1') {
+        url = `http://${dbHost}:4000/v1/otlp/v1/metrics`;
+    }
+    else {
+        url = `https://${dbHost}/v1/otlp/v1/metrics`;
+    }
+    console.log(url);
     const auth = Buffer.from(`${username}:${password}`).toString('base64');
     const metricReader = new sdk_metrics_1.PeriodicExportingMetricReader({
         exporter: new exporter_metrics_otlp_proto_1.OTLPMetricExporter({
-            url: `https://${dbHost}/v1/otlp/v1/metrics`,
+            url: url,
             headers: {
                 Authorization: `Basic ${auth}`,
                 "x-greptime-db-name": db,

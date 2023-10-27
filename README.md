@@ -18,18 +18,21 @@ npx ts-node app.ts --host=<host> --db=<dbname> --username=<username> --password=
 ```
 
 ## npm-publish
+
 1. Compile typescript to javascript.
-```shell
-tsc
-```
+
+    ```shell
+    tsc
+    ```
+
 2. Change the version in package.json.
 3. Commit and push code
 4. Create a tag with the version and push it.
 
-```shell
-git tag v<major>.<minor>.<patch>
-git push origin v<major>.<minor>.<patch>
-```
+    ```shell
+    git tag v<major>.<minor>.<patch>
+    git push origin v<major>.<minor>.<patch>
+    ```
 
 5. Run `npm publish`
 6. Write change log in Github Release.
