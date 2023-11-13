@@ -10,15 +10,32 @@ import {HostMetrics} from '@opentelemetry/host-metrics';
 
 function main() {
     var argv = require('minimist')(process.argv.slice(2));
-    const dbHost = argv.host
-    const db = argv.db
+    const dbHost = argv.host || 'localhost'
+    const db = argv.db || 'public'
     const username = argv.username
     const password = argv.password
+    const secure = argv.secure
+    const port = argv.port
+    
+    var url = ''
+    if (secure) {
+        url = `https://`
+    } else {
+        url = `http://`
+    }
+    
+    url += `${dbHost}`
+
+    if (port) {
+        url += `:${port}`
+    }
+
+    url += `/v1/otlp/v1/metrics`
 
     const auth = Buffer.from(`${username}:${password}`).toString('base64')
     const metricReader = new PeriodicExportingMetricReader({
         exporter: new OTLPMetricExporter({
-            url: `https://${dbHost}/v1/otlp/v1/metrics`,
+            url: url,
             headers: {
                 Authorization: `Basic ${auth}`,
                 "x-greptime-db-name": db,
