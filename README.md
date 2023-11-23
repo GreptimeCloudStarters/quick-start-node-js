@@ -7,14 +7,14 @@ This is a quick start demo for [GreptimeCloud](https://greptime.cloud/). It coll
 Use the following command line to start sending metrics without cloning the project:
 
 ```shell
-npx greptime-cloud-quick-start --host=<host> --db=<dbname> --username=<username> --password=<password>
+npx greptime-cloud-quick-start --endpoint=<endpoint-url> --db=<dbname> --username=<username> --password=<password>
 ```
 
 Or clone the project and run the following command line:
 
 ```shell
 npm install
-npx ts-node app.ts --host=<host> --db=<dbname> --username=<username> --password=<password>
+npx ts-node app.ts --endpoint=<endpoint-url> --db=<dbname> --username=<username> --password=<password>
 ```
 
 ## npm-publish

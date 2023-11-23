@@ -14,24 +14,21 @@ function main() {
     const db = argv.db || 'public'
     const username = argv.username
     const password = argv.password
-    const secure = argv.secure
+    const endpoint = argv.endpoint
     const port = argv.port
-    
+
     var url = ''
-    if (secure) {
-        url = `https://`
+    if (endpoint != '') {
+        url = endpoint
     } else {
-        url = `http://`
+        url = `https://`
+        url += `${dbHost}`
+        if (port) {
+            url += `:${port}`
+        }
+        url += `/v1/otlp/v1/metrics`
     }
     
-    url += `${dbHost}`
-
-    if (port) {
-        url += `:${port}`
-    }
-
-    url += `/v1/otlp/v1/metrics`
-
     const auth = Buffer.from(`${username}:${password}`).toString('base64')
     const metricReader = new PeriodicExportingMetricReader({
         exporter: new OTLPMetricExporter({
